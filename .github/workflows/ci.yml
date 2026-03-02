@@ -3,6 +3,8 @@ name: FastAPI CI
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   test:
@@ -19,7 +21,7 @@ jobs:
       
       - name: Устанавливаем Зависимости
         run: | 
-          pip install uvicorn fastapi httpx pytest
+          pip install -r requirements.txt
       
       - name: Запускаем Тесты
         run: | 
