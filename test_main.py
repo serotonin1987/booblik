@@ -17,3 +17,12 @@ def test_ping():
     response = client.get("/ping")
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
+
+from fastapi.testclient import TestClient
+from main import app
+
+def test_goodbye():
+    response = client.get("/Goodbye/Alice")
+    
+    assert response.status_code == 200
+    assert response.json() == {"message": "Goodbye, Alice!"}

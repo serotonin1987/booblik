@@ -25,3 +25,7 @@ def get_users():
 @app.get('/divide')
 def read_root():
     return {"message": "Freddy"}
+
+@app.get('/Goodbye/{name}')
+def goodbye(name: str):
+    return {"message": f"Goodbye, {name}!"}
