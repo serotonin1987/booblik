@@ -22,6 +22,26 @@ test:
   runs-on: ubuntu-latest
   needs: build
   steps:
+        name: Клонируем репозиторий
+    - uses: actions/checkout@v2
+    - name: Установка Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Установка зависимостей
+      run: |
+        pip install -r requirements.txt
   - name: Запуск тестов
     run: |
       pytest 
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+          name: Клонируем репозиторий
+    - uses: actions/checkout@v2
+    - name: Установка Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
