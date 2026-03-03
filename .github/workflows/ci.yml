@@ -7,22 +7,21 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Клонируем репозиторий
-        uses: actions/checkout@v3
+      name: Клонируем репозиторий
+    - uses: actions/checkout@v2
+    - name: Установка Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Установка зависимостей
 
-      - name: Устанавливаем Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-      
-      - name: Устанавливаем Зависимости
-        run: | 
-          pip install -r requirements.txt
-      
-      - name: Запускаем Тесты
-        run: | 
-          pytest
+test:
+  runs-on: ubuntu-latest
+  needs: build
+  steps:
+  - name: Запуск тестов
+    run: |
+      pytest 
